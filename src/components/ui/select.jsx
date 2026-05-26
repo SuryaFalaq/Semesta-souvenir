@@ -12,16 +12,12 @@ const Select = ({ children, onValueChange, value }) => {
 const SelectContext = React.createContext();
 
 const SelectTrigger = React.forwardRef(({ className = "", children, ...props }, ref) => {
-  const { value } = React.useContext(SelectContext);
-  const [open, setOpen] = React.useState(false);
-  
   return (
     <div className="relative">
       <button
         type="button"
         ref={ref}
         className={`flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
-        onClick={() => setOpen(!open)}
         {...props}
       >
         {children}
@@ -39,10 +35,6 @@ const SelectValue = ({ placeholder }) => {
 };
 
 const SelectContent = ({ children }) => {
-  const [open, setOpen] = React.useState(true);
-  
-  if (!open) return null;
-  
   return (
     <div className="absolute z-50 mt-1 w-full rounded-md border bg-white shadow-lg">
       <div className="max-h-60 overflow-auto p-1">
